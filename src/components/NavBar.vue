@@ -79,6 +79,7 @@ function handleMenuStatusClick() {
   box-sizing: border-box;
   position: absolute;
   text-align: center;
+  z-index: 998;
   width: 100%;
   height: 250px;
   padding: 2rem 4rem;
@@ -97,7 +98,7 @@ function handleMenuStatusClick() {
   width: 40px;
   height: 20px;
   position: absolute;
-  z-index: 2;
+  z-index: 999;
   left: 50%;
   cursor: pointer;
   border-end-end-radius: 20px;
@@ -152,7 +153,7 @@ function handleMenuStatusClick() {
 }
 
 .open-anim {
-  animation: showMenu 0.8s linear forwards;
+  animation: showMenu 0.6s linear forwards;
   animation-iteration-count: 1;
 }
 .close-anim {
@@ -162,7 +163,7 @@ function handleMenuStatusClick() {
 
 @keyframes showMenu {
   0% {
-    top: -100%;
+    top: -80%;
     opacity: 0.2;
   }
   70% {
@@ -182,7 +183,6 @@ function handleMenuStatusClick() {
   100% {
     top: -100%;
     opacity: 0;
-    display: none;
   }
 }
 </style>
