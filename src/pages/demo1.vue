@@ -4,12 +4,10 @@ import AvatarVue from "../components/Avatar.vue";
 import CircleBtn from "../components/CircleBtn.vue";
 const active = ref(1);
 
-function mouseClick(e: any) {
+function mouseClick(index: number, e: any) {
+  // 构建之后没有__vnode属性
   let vnode = e.currentTarget.__vnode;
-  if (vnode.type !== "li") return;
-  else {
-    active.value = Number(vnode.key);
-  }
+  active.value = index;
 }
 </script>
 <template>
@@ -18,7 +16,7 @@ function mouseClick(e: any) {
       <div class="i-ic-round-apps" style="height: 2.5em; width: 2.5em"></div>
       <ul>
         <li
-          @click.stop="mouseClick"
+          @click.stop="mouseClick(1, $event)"
           :class="active === 1 ? 'menu-active' : ''"
           key="1"
         >
@@ -26,7 +24,7 @@ function mouseClick(e: any) {
           <div v-else class="i-ri:flashlight-line"></div>
         </li>
         <li
-          @click="mouseClick"
+          @click="mouseClick(2, $event)"
           :class="active === 2 ? 'menu-active' : ''"
           key="2"
         >
@@ -34,7 +32,7 @@ function mouseClick(e: any) {
           <div v-else class="i-mdi:tshirt-crew-outline"></div>
         </li>
         <li
-          @click="mouseClick"
+          @click="mouseClick(3, $event)"
           :class="active === 3 ? 'menu-active' : ''"
           key="3"
         >
@@ -42,7 +40,7 @@ function mouseClick(e: any) {
           <div v-else class="i-tabler:shoe"></div>
         </li>
         <li
-          @click="mouseClick"
+          @click="mouseClick(4, $event)"
           :class="active === 4 ? 'menu-active' : ''"
           key="4"
         >
@@ -50,7 +48,7 @@ function mouseClick(e: any) {
           <div v-else class="i-mdi:heart-outline"></div>
         </li>
         <li
-          @click="mouseClick"
+          @click="mouseClick(5, $event)"
           :class="active === 5 ? 'menu-active' : ''"
           key="5"
         >
