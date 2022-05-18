@@ -8,9 +8,6 @@ const isOpen = ref<boolean>(true);
 const statusIcon = computed(() => {
   return isOpen.value ? "i-carbon:arrow-up" : "i-carbon:arrow-down";
 });
-const headerAnimationClass = computed(() => {
-  return isOpen.value ? "open-anim" : "close-anim";
-});
 const config = ref({
   isMouseDown: false,
   previousTime: 0,
@@ -46,7 +43,6 @@ function previewClick() {
 // header的开关
 function handleMenuStatusClick() {
   isOpen.value = !isOpen.value;
-  console.log(headerAnimationClass, statusIcon);
 }
 </script>
 <template>
@@ -55,15 +51,15 @@ function handleMenuStatusClick() {
     @mousemove.capture.stop.prevent="handleMouseMove"
     @mouseup.capture.stop="handleMouseUp"
     class="nav"
-    :class="headerAnimationClass"
+    :style="isOpen ? '' : 'transform:translateY(-100%)'"
   >
     <div ref="header" class="inner-wrapper">
-      <div @click="previewClick" class="box">
+      <router-link to="/demo1" class="box">
         <img src="../assets/demo-ui/demo1.png" alt="" />
-      </div>
-      <div @click="previewClick" class="box">
-        <img src="../assets/demo-ui/demo1.png" alt="" />
-      </div>
+      </router-link>
+      <router-link to="/demo2" class="box">
+        <img src="../assets/demo-ui/demo2.png" alt="" />
+      </router-link>
     </div>
 
     <!-- <div class="scroll-bar">
@@ -85,7 +81,7 @@ function handleMenuStatusClick() {
   padding: 2rem 4rem;
   background-color: #eee;
   overflow-x: hidden;
-  /* transition: opacity 0.5s; */
+  transition: all 0.5s;
 }
 .inner-wrapper {
   display: flex;
@@ -159,30 +155,5 @@ function handleMenuStatusClick() {
 .close-anim {
   animation: closeMenu 0.8s linear forwards;
   animation-iteration-count: 1;
-}
-
-@keyframes showMenu {
-  0% {
-    top: -80%;
-    opacity: 0.2;
-  }
-  70% {
-    top: -30%;
-    opacity: 0.7;
-  }
-  100% {
-    top: 0;
-    opacity: 1;
-  }
-}
-@keyframes closeMenu {
-  0% {
-    top: 0;
-    opacity: 1;
-  }
-  100% {
-    top: -100%;
-    opacity: 0;
-  }
 }
 </style>
